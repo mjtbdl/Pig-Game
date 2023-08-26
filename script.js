@@ -13,7 +13,7 @@ const btnNew = document.querySelector('.btn--new');
 const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 const overlay = document.querySelector('.overlay');
-const winMessage = document.querySelector('.winMessage');
+const winMessage = document.querySelector('.win-message');
 
 let scores, currentScore, activePlayer, playing; // global variables
 
@@ -83,7 +83,8 @@ btnHold.addEventListener('click', function () {
       scores[activePlayer];
 
     // 2. Check if player's score is >= 100
-    if (scores[activePlayer] >= 10) {
+    if (scores[activePlayer] >= 100) {
+      displayWinMessage(activePlayer);
       // Finish the game
       playing = false;
       document.getElementById(`current--${activePlayer}`).textContent = 0;
@@ -103,4 +104,13 @@ btnHold.addEventListener('click', function () {
 });
 
 // Resetting the game
-btnNew.addEventListener('click', init);
+btnNew.addEventListener('click', function () {
+  console.log('New game button clicked');
+  overlay.setAttribute('id', 'hidden'); // Hide the overlay
+  init(); // Reset the game
+});
+
+overlay.addEventListener('click', function () {
+  overlay.setAttribute('id', 'hidden'); // Hide the overlay
+  init();
+});
