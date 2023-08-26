@@ -12,6 +12,8 @@ const diceEl = document.querySelector('.dice');
 const btnNew = document.querySelector('.btn--new');
 const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
+const overlay = document.querySelector('.overlay');
+const winMessage = document.querySelector('.winMessage');
 
 let scores, currentScore, activePlayer, playing; // global variables
 
@@ -32,6 +34,7 @@ const init = function () {
   player1El.classList.remove('player--winner');
   player0El.classList.add('player--active');
   player1El.classList.remove('player--active');
+  overlay.setAttribute('id', 'hidden');
 };
 init();
 
@@ -41,6 +44,11 @@ const SwitchPlayer = function () {
   activePlayer = activePlayer === 0 ? 1 : 0;
   player0El.classList.toggle('player--active'); // toggle adds class if it's not there, and removes it if it is
   player1El.classList.toggle('player--active');
+};
+
+const displayWinMessage = function (player) {
+  winMessage.textContent = `Player ${player + 1} wins!`;
+  overlay.removeAttribute('id');
 };
 
 // Rolling dice functionality
