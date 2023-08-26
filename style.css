@@ -20,6 +20,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0;
 }
 
 /* LAYOUT */
@@ -168,4 +169,27 @@ main {
 
 .hidden {
   display: none;
+}
+
+/* Adjust layout for smaller screens */
+@media screen and (max-width: 768px) {
+  .main {
+    flex-direction: column;
+    width: 80vw;
+    height: auto;
+  }
+
+  .player {
+    padding: 6rem;
+  }
+
+  .dice {
+    height: 8rem;
+    top: 10rem;
+  }
+
+  .btn {
+    padding: 0.5rem 1.5rem;
+    font-size: 1.4rem;
+  }
 }
